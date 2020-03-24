@@ -1,4 +1,4 @@
 ## Register a User
 echo "Create a User Endpoint"
-curl -X POST -d '{"name":"John","surname":"Doe"}' http://localhost:5000/api/users/
+curl -H "Content-Type: application/json" -d '{"name":"John Doe","email":"Jo@doe.com","password":"12345678"}' -X POST http://localhost:5000/api/users/
 echo ""
