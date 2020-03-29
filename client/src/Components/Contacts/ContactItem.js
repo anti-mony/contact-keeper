@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
@@ -15,7 +14,18 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PhoneOutlined from "@material-ui/icons/PhoneOutlined";
 import EmailOutlined from "@material-ui/icons/EmailOutlined";
 
-const ContactItem = ({ contact: { name, id, email, phone, type } }) => {
+import ContactContext from "../../Context/Contact/contactContext";
+
+const ContactItem = ({ contact }) => {
+  const contactContext = useContext(ContactContext);
+  const { name, id, email, phone, type } = contact;
+  const { deleteContact, setCurrent, clearCurrent } = contactContext;
+
+  const onDelete = () => {
+    deleteContact(id);
+    clearCurrent();
+  };
+
   return (
     <Card style={{ margin: 8, background: "#90a4ae" }}>
       <CardContent>
@@ -26,15 +36,11 @@ const ContactItem = ({ contact: { name, id, email, phone, type } }) => {
           margin='4'
         >
           <Box flexGrow={1}>
-            <Typography variant='h5'>{name}</Typography>
+            <Typography variant='h6'>{name}</Typography>
           </Box>
-          <Chip label={type.toUpperCase()}></Chip>
+          <Chip size='small' label={type.toUpperCase()}></Chip>
         </Box>
-        <List
-          component='nav'
-          aria-label='main mailbox folders'
-          style={{ color: "#212121" }}
-        >
+        <List style={{ color: "#212121" }}>
           {email && (
             <ListItem>
               <ListItemIcon>
@@ -53,8 +59,21 @@ const ContactItem = ({ contact: { name, id, email, phone, type } }) => {
           )}
         </List>
       </CardContent>
-      <Button style={{ background: "#5c6bc0", width: "50%" }}>Edit</Button>
-      <Button style={{ background: "#DC143C", width: "50%" }}>Delete</Button>
+
+      <Button
+        size='small'
+        style={{ background: "#5c6bc0", width: "50%" }}
+        onClick={() => setCurrent(contact)}
+      >
+        Edit
+      </Button>
+      <Button
+        size='small'
+        style={{ background: "#DC143C", width: "50%" }}
+        onClick={onDelete}
+      >
+        Delete
+      </Button>
     </Card>
   );
 };
