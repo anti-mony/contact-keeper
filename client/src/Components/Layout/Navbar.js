@@ -17,7 +17,7 @@ const Navbar = ({ title }) => {
       <Toolbar>
         <Grid container direction='row' alignItems='center'>
           <Grid item xs={8} sm={8}>
-            <Grid container direction='row' alignItems='center' link=''>
+            <Grid container direction='row' alignItems='center'>
               <Contacts />
               <Typography variant='h6' style={{ margin: 4 }}>
                 {title}
