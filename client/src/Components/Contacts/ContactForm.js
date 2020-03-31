@@ -2,15 +2,24 @@ import React, { useState, useContext, useEffect } from "react";
 
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import { makeStyles } from "@material-ui/core/styles";
 
 import ContactContext from "../../Context/Contact/contactContext";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "30ch"
+    }
+  }
+}));
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
@@ -57,6 +66,8 @@ const ContactForm = () => {
 
   const { name, email, phone, type } = contact;
 
+  const classes = useStyles();
+
   return (
     <div>
       <Fab
@@ -84,7 +95,7 @@ const ContactForm = () => {
           {current ? "Update Contact" : "Add Contact"}
         </DialogTitle>
         <DialogContent>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className={classes.root}>
             <Box display='flex' flexDirection='column'>
               <TextField
                 required
@@ -93,7 +104,6 @@ const ContactForm = () => {
                 name='name'
                 value={name}
                 onChange={onChange}
-                style={{ margin: 8 }}
               />
               <TextField
                 label='Email'
@@ -102,7 +112,6 @@ const ContactForm = () => {
                 value={email}
                 type='email'
                 onChange={onChange}
-                style={{ margin: 8 }}
               />
               <TextField
                 label='Phone'
@@ -110,7 +119,6 @@ const ContactForm = () => {
                 name='phone'
                 value={phone}
                 onChange={onChange}
-                style={{ margin: 8 }}
               />
               <TextField
                 select
@@ -119,7 +127,6 @@ const ContactForm = () => {
                 value={type}
                 onChange={onChange}
                 variant='outlined'
-                style={{ margin: 8 }}
               >
                 <option key='personal' value='personal'>
                   Personal

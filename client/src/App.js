@@ -6,20 +6,23 @@ import Home from "./Components/Pages/Home";
 import About from "./Components/Pages/About";
 
 import ContactState from "./Context/Contact/ContactState";
+import AuthState from "./Context/Auth/AuthState";
 
 const App = () => {
   return (
-    <ContactState>
-      <Router>
-        <Fragment>
+    <AuthState>
+      <ContactState>
+        <Router>
           <Navbar />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/about' component={About} />
-          </Switch>
-        </Fragment>
-      </Router>
-    </ContactState>
+          <Fragment>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/about' component={About} />
+            </Switch>
+          </Fragment>
+        </Router>
+      </ContactState>
+    </AuthState>
   );
 };
 

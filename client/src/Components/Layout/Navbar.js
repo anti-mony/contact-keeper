@@ -7,6 +7,9 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Hidden from "@material-ui/core/Hidden";
+
+import ContactFilter from "../Contacts/ContactFilter";
 
 const Navbar = ({ title }) => {
   return (
@@ -16,7 +19,7 @@ const Navbar = ({ title }) => {
     >
       <Toolbar>
         <Grid container direction='row' alignItems='center'>
-          <Grid item xs={8} sm={8}>
+          <Grid item xs={6} sm={4}>
             <Grid container direction='row' alignItems='center'>
               <Contacts />
               <Typography variant='h6' style={{ margin: 4 }}>
@@ -24,7 +27,14 @@ const Navbar = ({ title }) => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid item xs={4} sm={4}>
+          <Hidden xsDown>
+            {" "}
+            <Grid item sm={4}>
+              {" "}
+              <ContactFilter />
+            </Grid>
+          </Hidden>
+          <Grid item xs={6} sm={4}>
             <Box display='flex' flexDirection='row-reverse'>
               <Link to='/about'>
                 <Button>About</Button>
@@ -36,6 +46,13 @@ const Navbar = ({ title }) => {
           </Grid>
         </Grid>
       </Toolbar>
+      <Hidden smUp>
+        <Toolbar>
+          <Box width={1}>
+            <ContactFilter />
+          </Box>
+        </Toolbar>
+      </Hidden>
     </AppBar>
   );
 };
