@@ -13,9 +13,9 @@ const About = () => {
       margin='16px'
       flexDirection='column'
     >
-      <Typography variant='h1'>About</Typography>
+      <Typography variant='h2'>About</Typography>
       <Typography variant='h5' gutterBottom>
-        Contacts Manager App
+        Contact Keeper
       </Typography>
       <Typography variant='body1'>Manage Contacts the Hard Way xD</Typography>
       <Typography variant='subtitle2'>(But I hope the dog helps)</Typography>

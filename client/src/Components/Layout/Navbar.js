@@ -21,10 +21,14 @@ const Navbar = ({ title }) => {
         <Grid container direction='row' alignItems='center'>
           <Grid item xs={6} sm={4}>
             <Grid container direction='row' alignItems='center'>
-              <Contacts />
-              <Typography variant='h6' style={{ margin: 4 }}>
-                {title}
-              </Typography>
+              <Link to='/' style={{ textDecoration: "none" }}>
+                <Button>
+                  <Contacts />
+                  <Typography variant='h6' style={{ margin: 4 }}>
+                    {title}{" "}
+                  </Typography>
+                </Button>
+              </Link>
             </Grid>
           </Grid>
           <Hidden xsDown>
@@ -36,11 +40,14 @@ const Navbar = ({ title }) => {
           </Hidden>
           <Grid item xs={6} sm={4}>
             <Box display='flex' flexDirection='row-reverse'>
-              <Link to='/about'>
+              <Link to='/about' style={{ textDecoration: "none" }}>
                 <Button>About</Button>
               </Link>
-              <Link to='/'>
-                <Button>Home</Button>
+              <Link to='/register' style={{ textDecoration: "none" }}>
+                <Button>Register</Button>
+              </Link>
+              <Link to='/login' style={{ textDecoration: "none" }}>
+                <Button>Login</Button>
               </Link>
             </Box>
           </Grid>
@@ -58,7 +65,7 @@ const Navbar = ({ title }) => {
 };
 
 Navbar.defaultProps = {
-  title: "Contact Keeper"
+  title: "Contacts"
 };
 
 export default Navbar;
