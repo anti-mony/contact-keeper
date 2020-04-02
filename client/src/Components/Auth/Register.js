@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import AlertContext from "../../Context/Alert/alertContext";
+import AuthContext from "../../Context/Auth/authContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Register = () => {
+const Register = props => {
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -27,8 +28,31 @@ const Register = () => {
   const { name, email, password, password2 } = user;
 
   const alertContext = useContext(AlertContext);
-
   const { setAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const {
+    register,
+    error,
+    clearErrors,
+    loadUser,
+    isAuthenticated
+  } = authContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
+    if (error === "User Already Exists (Email)") {
+      setAlert(error, "warning");
+      clearErrors();
+    }
+    if (error === "Internal Server Error") {
+      setAlert(error, "error");
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
 
   const clearForm = e => {
     setUser({
@@ -47,6 +71,13 @@ const Register = () => {
       setAlert("Please Fill the values", "warning");
     } else if (password !== password2) {
       setAlert("Passwords do not Match", "error");
+    } else {
+      register({
+        name,
+        email: email.toLowerCase(),
+        password
+      });
+      loadUser();
     }
   };
 
