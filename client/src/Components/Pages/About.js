@@ -30,7 +30,6 @@ const About = () => {
         Photo by{" "}
         <Button
           variant='outlined'
-          color='dark'
           size='small'
           href='https://www.pexels.com/@lstan?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels'
         >
@@ -39,7 +38,6 @@ const About = () => {
         from{" "}
         <Button
           variant='outlined'
-          color='dark'
           size='small'
           href='https://www.pexels.com/photo/shallow-focus-photo-of-long-coated-dog-3361722/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels'
         >
