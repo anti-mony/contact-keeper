@@ -3,7 +3,6 @@ const router = express.Router();
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
 const { check, validationResult } = require("express-validator");
 
 const auth = require("../Middleware/auth");
@@ -30,7 +29,7 @@ router.post(
   "/",
   [
     check("email", "Please enter a valid email").isEmail(),
-    check("password", "Please enter a password").exists()
+    check("password", "Please enter a password").exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -55,15 +54,15 @@ router.post(
       // JWT Creation
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        process.env.JWT_SECRET,
         {
-          expiresIn: 3600
+          expiresIn: 3600,
         },
         (err, token) => {
           if (err) throw err;

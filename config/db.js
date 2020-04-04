@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const config = require("config");
 
 // Database Connection URL
-const db = config.get("mongoURI");
+const db = process.env.MONGO_URI;
 
 // Connect to Database
 
@@ -12,7 +12,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
 
     console.log("Mongo DB Connection Successful");
