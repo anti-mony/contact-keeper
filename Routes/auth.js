@@ -19,7 +19,7 @@ router.get("/", auth, async (req, res) => {
     return res.json(user);
   } catch (error) {
     console.error(error.message);
-    return res.status(500).json({ msg: "Internal Server Error" });
+    return res.status(500).send("Internal Server Error");
   }
 });
 

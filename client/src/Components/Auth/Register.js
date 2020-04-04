@@ -31,13 +31,7 @@ const Register = props => {
   const { setAlert } = alertContext;
 
   const authContext = useContext(AuthContext);
-  const {
-    register,
-    error,
-    clearErrors,
-    loadUser,
-    isAuthenticated
-  } = authContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -77,7 +71,6 @@ const Register = props => {
         email: email.toLowerCase(),
         password
       });
-      loadUser();
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, Fragment, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -17,10 +17,15 @@ import ContactContext from "../../Context/Contact/contactContext";
 
 const Navbar = ({ title }) => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, logout, user } = authContext;
+  const { isAuthenticated, logout, user, loadUser } = authContext;
 
   const contactContext = useContext(ContactContext);
   const { clearContacts } = contactContext;
+
+  useEffect(() => {
+    loadUser();
+    // eslint-disable-next-line
+  }, []);
 
   const onLogout = () => {
     logout();

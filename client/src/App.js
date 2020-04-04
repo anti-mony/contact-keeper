@@ -12,13 +12,7 @@ import ContactState from "./Context/Contact/ContactState";
 import AuthState from "./Context/Auth/AuthState";
 import AlertState from "./Context/Alert/AlertState";
 
-import setAuthToken from "./Utils/setAuthToken";
-
 import PrivateRoute from "./Components/Routing/PrivateRoute";
-
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
 
 const App = () => {
   return (
