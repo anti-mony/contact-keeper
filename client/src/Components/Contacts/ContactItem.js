@@ -18,11 +18,11 @@ import ContactContext from "../../Context/Contact/contactContext";
 
 const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
-  const { name, id, email, phone, type } = contact;
+  const { name, _id, email, phone, type } = contact;
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
   const onDelete = () => {
-    deleteContact(id);
+    deleteContact(_id);
     clearCurrent();
   };
 
@@ -79,7 +79,7 @@ const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
 };
 
 export default ContactItem;

@@ -4,6 +4,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Fab from "@material-ui/core/Fab";
@@ -12,13 +13,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import ContactContext from "../../Context/Contact/contactContext";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "30ch"
-    }
-  }
+    },
+  },
 }));
 
 const ContactForm = () => {
@@ -39,7 +39,7 @@ const ContactForm = () => {
     name: "",
     email: "",
     phone: "",
-    type: "personal"
+    type: "personal",
   });
 
   const [open, setOpen] = React.useState(false);
@@ -54,10 +54,10 @@ const ContactForm = () => {
     clearCurrent();
   };
 
-  const onChange = e =>
+  const onChange = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
       addContact(contact);
@@ -83,7 +83,7 @@ const ContactForm = () => {
           right: 20,
           bottom: 20,
           left: "auto",
-          position: "fixed"
+          position: "fixed",
         }}
       >
         <AddIcon />
@@ -131,12 +131,12 @@ const ContactForm = () => {
                 onChange={onChange}
                 variant='outlined'
               >
-                <option key='personal' value='personal'>
+                <MenuItem key='personal' value='personal'>
                   Personal
-                </option>
-                <option key='professional' value='professional'>
+                </MenuItem>
+                <MenuItem key='professional' value='professional'>
                   Professional
-                </option>
+                </MenuItem>
               </TextField>
               <Box display='flex' justifyContent='space-evenly'>
                 <Button onClick={handleClose} color='primary'>

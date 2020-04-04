@@ -17,7 +17,7 @@ const About = () => {
       <Typography variant='h5' gutterBottom>
         Contact Keeper
       </Typography>
-      <Typography variant='body1'>Manage Contacts the Hard Way xD</Typography>
+      <Typography variant='body1'>Don't use this, it's unsafe xD</Typography>
       <Typography variant='subtitle2'>(But I hope the dog helps)</Typography>
       <img
         src={aboutimg}
